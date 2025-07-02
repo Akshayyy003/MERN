@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.scrollable-card {
+  max-height: 400px; /* adjust as needed */
+  overflow-y: auto;
+}
+
+.lab-division-block.spaced {
+  margin-bottom: 36px;
+}
+
+.division-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  color: #f0e68c;
+}
+
+/* body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  background-color: #1f2029;
+  color: #fff;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+  background-repeat: repeat;
+  background-size: 4%;
+  /* padding-top: 20px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: flex-start; */
+  /* min-height: 100vh; */
+/* }  */
+
+.timetable-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.dropdown-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #2b2c3a;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+  
+}
+
+.dropdown-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+  color: #ffeba7;
+}
+
+.label-text {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.styled-dropdown {
+  width: 200px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #111;
+  color: #ffeba7;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  box-shadow: 0 12px 35px rgba(255, 235, 167, 0.15);
+  background-image: url('https://unicons.iconscout.com/release/v4.0.0/svg/line/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
+
+.styled-dropdown:hover {
+  background-color: #18191f;
+}
+
+.styled-dropdown:focus {
+  outline: 2px solid #ffeba7;
+  outline-offset: 2px;
+}
+
+.submit-button {
+  padding: 12px;
+  background-color: #ffeba7;
+  color: #102770;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 12px 35px rgba(255, 235, 167, 0.2);
+  transition: background 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #e6d076;
+}

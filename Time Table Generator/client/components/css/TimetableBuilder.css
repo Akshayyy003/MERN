@@ -1,0 +1,84 @@
+.timetable-wrapper {
+  padding: 20px;
+  overflow-x: auto;
+}
+.inputBx input {
+  position: relative;
+  margin-top: 25px;
+  width: 100%;
+  padding: 6px 10px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  font-size: 1em;
+  color: #fff;
+  box-shadow: none;
+  outline: none;
+}
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  background-color: #1f2029;
+  color: #ffeba7;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid #333;
+  padding: 12px;
+  text-align: center;
+  min-width: 100px;
+}
+
+.timetable th {
+  background-color: #2c2e3f;
+  color: #ffeba7;
+}
+
+.time-label {
+  font-weight: bold;
+  background-color: #111;
+}
+
+.break-row {
+  background-color: #292929;
+  font-style: italic;
+  color: #aaa;
+}
+
+.timetable-cell {
+  background-color: #222;
+}
+
+.timetable-cell:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+
+/* Add to your CSS file */
+.submit-button.generating {
+  background-color: #ccc;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.submit-button.generating::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

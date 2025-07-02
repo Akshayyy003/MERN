@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css?family=Krub:400,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background: #202020;
+  font-family: 'Krub', sans-serif;
+}
+
+.card {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 83%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px 5px rgba(0, 0, 0, 0.2);
+  background: #151515;
+  overflow: hidden;
+  margin-left: 17%;
+}
+
+.ds-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: crimson;
+  animation: dsTop 1.5s;
+}
+
+.avatar-holder {
+  position: absolute;
+  margin: auto;
+  top: 40px;
+  right: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #151515,
+              inset 0 0 0 5px #000,
+              inset 0 0 0 5px #000,
+              inset 0 0 0 5px #000;
+  background: white;
+  overflow: hidden;
+  animation: mvTop 1.5s;
+}
+
+.avatar-holder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  position: absolute;
+  margin: auto;
+  top: -60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.name a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.name a:hover {
+  text-decoration: underline;
+  color: crimson;
+}
+
+.name h6 {
+  margin-top: 5px;
+  color: white;
+  font-size: 14px;
+}
+
+.button {
+  position: absolute;
+  margin: auto;
+  padding: 8px;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.button .btn {
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: white;
+  letter-spacing: 0.05em;
+  font-size: 12px;
+  background: none;
+  border: 1px solid white;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.button .btn:hover {
+  background: crimson;
+  border-color: crimson;
+}
+
+.button .btn.following {
+  background: crimson;
+  border-color: crimson;
+}
+
+.ds-info {
+  position: absolute;
+  margin: auto;
+  top: 120px;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  animation: fadeInMove 2s forwards;
+}
+
+.ds-info .ds h6 {
+  text-transform: uppercase;
+  color: crimson;
+  font-size: 10px;
+}
+
+.ds-info .ds p {
+  font-size: 12px;
+}
+.contact-info {
+  position: relative;
+  margin: 140px auto 10px;
+  padding: 0 20px;
+  color: white;
+  font-size: 25px; /* Increased font size */
+  line-height: 1.8;
+  text-align: center; /* Center alignment */
+}
+
+.contact-info p {
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+.contact-info strong {
+  color: crimson;
+}
+
+.ds-skill {
+  position: relative;
+  margin: 30px auto 10px;
+  padding: 0 20px;
+  color: white;
+  font-size: 50px; /* match contact info */
+  text-align: center; /* center text */
+  width: 100%;
+  animation: mvBottom 1.5s;
+}
+
+.ds-skill h6 {
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: crimson;
+}
+
+.skill h6 {
+  font-weight: 500;
+  font-size: 25px;
+  margin: 6px 0;
+  color: white;
+}
+
+.skill .fab {
+  color: crimson;
+  font-size: 14px;
+}
+
+.bar {
+  height: 5px;
+  background: crimson;
+  text-align: right;
+}
+
+.bar p {
+  color: white;
+  font-size: 8px;
+  padding-top: 5px;
+  animation: fadeIn 5s;
+}
+
+.bar:hover {
+  background: white;
+}
+
+.bar-html {
+  width: 95%;
+  animation: htmlSkill 1s forwards;
+}
+
+.bar-css {
+  width: 90%;
+  animation: cssSkill 2s forwards;
+}
+
+.bar-js {
+  width: 75%;
+  animation: jsSkill 3s forwards;
+}
+
+/* Animations */
+@keyframes fadeInMove {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes htmlSkill {
+  from { width: 0; }
+  to { width: 95%; }
+}
+
+@keyframes cssSkill {
+  from { width: 0; }
+  to { width: 90%; }
+}
+
+@keyframes jsSkill {
+  from { width: 0; }
+  to { width: 75%; }
+}
+
+@keyframes mvBottom {
+  from { bottom: -150px; }
+  to { bottom: 10px; }
+}
+
+@keyframes mvTop {
+  from { top: -150px; }
+  to { top: 40px; }
+}
+
+@keyframes dsTop {
+  from { top: -150px; }
+  to { top: 0; }
+}

@@ -1,0 +1,68 @@
+/* HomePageIntro.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.intro-container {
+  max-width: 800px;
+  margin: 90px auto;
+  padding: 40px;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(235, 234, 234, 0.08);
+}
+
+.intro-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #c5cbd5;
+  margin-bottom: 20px;
+}
+
+.intro-description {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.highlight {
+  font-weight: 600;
+  color: #f98b0e;
+}
+
+.intro-subtext {
+  font-size: 18px;
+  color: #d1c2c2;
+  margin-bottom: 12px;
+}
+
+.intro-list {
+  text-align: left;
+  margin: 0 auto 30px;
+  max-width: 600px;
+  font-size: 17px;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.intro-list li {
+  margin-bottom: 10px;
+}
+
+.intro-developer {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #e8e8e8;
+}
+
+.intro-developer h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #bec2c9;
+}
