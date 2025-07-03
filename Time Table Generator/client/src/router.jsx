@@ -15,6 +15,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import HomePageIntro from "../components/HomePageIntro";
 import ChangePassword from "../components/ChangePassword";
 import ForgotPassword from "../components/ForgotPassword";
+import UserTimetable from "../components/UserTimetable";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "change-password",
         element: <ChangePassword />,
+      },
+      {
+        path: "user-timetable",
+        element: <UserTimetable />,
       },
     ],
   },

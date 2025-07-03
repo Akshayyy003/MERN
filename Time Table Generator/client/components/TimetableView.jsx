@@ -36,7 +36,7 @@ const TimetableView = () => {
     const rows = generate2DArrayFromFlat(timetableData.timetable);
 
     const colWidth = availableWidth / headers.length;
-    const rowHeight = 10;
+    const rowHeight = 20;
     let currentY = startY;
 
     const drawCell = (x, y, width, height, text, isHeader = false) => {
@@ -58,7 +58,7 @@ const TimetableView = () => {
       doc.setFontSize(9);
 
       const textLines = doc.splitTextToSize(text, width - 2); // wrap text
-      const lineHeight = 3.5;
+      const lineHeight = 6.5;
       const offsetY = (height - textLines.length * lineHeight) / 2;
 
       textLines.forEach((line, i) => {
@@ -139,7 +139,7 @@ const TimetableView = () => {
       } else if (slot.type === "Lecture") {
         timetableMap[time][slot.day] = `${slot.subject} (${slot.teacher})`;
       } else if (slot.type === "Lab") {
-        timetableMap[time][slot.day] += `Lab(${slot.subject})-${slot.group} `;
+        timetableMap[time][slot.day] += `\nLab(${slot.subject}) - (${slot.teacher}) -${slot.group} `;
       }
     });
 

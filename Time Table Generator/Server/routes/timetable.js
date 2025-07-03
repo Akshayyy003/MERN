@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Timetable = require('../models/TimeTable');
+const User = require('../models/users');
 
 
 // POST /api/timetable/save
@@ -59,7 +60,7 @@ router.get('/occupied', async (req, res) => {
         }
       });
     });
-    
+
 
     res.json({
       occupiedTeachers: Array.from(occupiedTeachers),
@@ -71,6 +72,42 @@ router.get('/occupied', async (req, res) => {
   }
 });
 
+router.get('/user', async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    // 1. Find user by email
+    const user = await User.findOne({ email });
+
+    if (!user || !user.name) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const userName = user.name.trim().toLowerCase();
+
+    // 2. Fetch all timetables
+    const allTimetables = await Timetable.find();
+
+    // 3. Filter slots where teacher or group matches user's name
+    const userSlots = allTimetables.flatMap(tt =>
+      tt.timetable.filter(slot => {
+        const teacherName = (slot.teacher || "").trim().toLowerCase();
+        const groupName = (slot.group || "").trim().toLowerCase();
+
+        return teacherName === userName;
+      })
+    );
+
+    res.json(userSlots);
+  } catch (err) {
+    console.error('Error fetching user timetable:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 
 

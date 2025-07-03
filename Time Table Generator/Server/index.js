@@ -39,6 +39,7 @@ app.use("/api/labs-classes", deleteLoc);
 app.use('/api/timetable', timetableRoutes);
 app.use('/api/cp', changePass);
 app.use('/api/forgot', forgotPass);
+app.use('/api/forgot', forgotPass);
 // app.use('/api/generate', generate);
 
 app.use('/api', fetchTS);

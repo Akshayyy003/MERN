@@ -104,7 +104,15 @@ const TimetableBuilder = () => {
       [`${day}-${index}`]: data
     }));
   };
-
+  const reset = () =>{
+    setDiv("");
+      setBranch("");
+      setSemester("");
+      setConfig(null);
+      setOptions({ teachers: [], subjects: [], locations: [] });
+      setTimetableData({});
+      setLabSelections({});
+  }
   const handleSubmit = async () => {
     const timetableArray = [];
 
@@ -167,13 +175,7 @@ const TimetableBuilder = () => {
       alert("✅ Timetable saved successfully");
 
       // Reset all
-      setDiv("");
-      setBranch("");
-      setSemester("");
-      setConfig(null);
-      setOptions({ teachers: [], subjects: [], locations: [] });
-      setTimetableData({});
-      setLabSelections({});
+      reset();
 
     } catch (err) {
       console.error(err);
@@ -289,6 +291,8 @@ const TimetableBuilder = () => {
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <button className="submit-button" onClick={handleSubmit}>Submit Timetable</button>
+        
+        <button className="submit-button" style={{ marginLeft: "20px" }}  onClick={reset}>Reset Timetable</button>
       </div>
     </div>
   );

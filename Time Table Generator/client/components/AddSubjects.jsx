@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/Login.css";
+import "./css/AddSubject.css";
 import { useState } from "react";
 import axios from "axios";
 
@@ -50,7 +50,7 @@ const AddSubjects = () => {
 
   return (
     <div className="main">
-      <div className="ring">
+      <div className="ring" style={{ width: '700px', height: '700px' }}>
         <i style={{ "--clr": "#00ff0a" }}></i>
         <i style={{ "--clr": "#ff0057" }}></i>
         <i style={{ "--clr": "#fffd44" }}></i>
@@ -67,7 +67,6 @@ const AddSubjects = () => {
                 required
               />
             </div>
-            <br />
 
             <div className="inputBx">
               <input type="text" placeholder="Subject Code"
@@ -76,7 +75,6 @@ const AddSubjects = () => {
                 onChange={(e) => setsubCode(e.target.value)}
               />
             </div>
-            <br />
             <div className="inputBx">
               <input type="text" placeholder="Branch"
                 value={branch}
@@ -84,7 +82,6 @@ const AddSubjects = () => {
                 onChange={(e) => setBranch(e.target.value)}
               />
             </div>
-            <br />
             <div className="inputBx">
               <input type="text" placeholder="Semester"
                 value={semester}
@@ -92,7 +89,6 @@ const AddSubjects = () => {
                 onChange={(e) => setSem(e.target.value)}
               />
             </div>
-            <br />
             <div className="inputBx">
               <input type="number" placeholder="Num of Lec Required per Week"
                 value={lec}
@@ -100,7 +96,6 @@ const AddSubjects = () => {
                 onChange={(e) => setLec(e.target.value)}
               />
             </div>
-            <br />
             <div className="inputBx">
               <input type="number" placeholder="Num of Lab Required per Week"
                 value={lab}
@@ -108,7 +103,6 @@ const AddSubjects = () => {
                 onChange={(e) => setLab(e.target.value)}
               />
             </div>
-            <br />
             <div className="inputBx">
               <input type="submit" value="Add Subject" />
             </div>

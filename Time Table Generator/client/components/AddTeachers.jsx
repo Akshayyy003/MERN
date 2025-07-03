@@ -61,7 +61,7 @@ const AddTeachers = () => {
 
   return (
     <div className="main">
-      <div className="ring">
+      <div className="ring" style={{ width: '700px', height: '700px' }}>
         <i style={{ "--clr": "#00ff0a" }}></i>
         <i style={{ "--clr": "#ff0057" }}></i>
         <i style={{ "--clr": "#fffd44" }}></i>

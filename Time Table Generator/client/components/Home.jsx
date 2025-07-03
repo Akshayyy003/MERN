@@ -11,8 +11,8 @@ const Home = () => {
 
   const tabs = [
     { label: "Home", path: "/home" },
-    { label: "Add Subjects", path: "/home/add-subjects", allowedRoles: ["admin"] },
-    { label: "Delete Subject", path: "/home/delete-subject", allowedRoles: ["admin"] },
+    { label: "Add Subjects", path: "/home/add-subjects", allowedRoles: ["admin", "teacher"] },
+    { label: "Delete Subject", path: "/home/delete-subject", allowedRoles: ["admin", "teacher"] },
     { label: "Add Teachers", path: "/home/add-teachers", allowedRoles: ["admin"] },
     { label: "Delete Teachers", path: "/home/delete-teachers", allowedRoles: ["admin"] },
     { label: "Add Labs & Classes", path: "/home/add-labs-classes", allowedRoles: ["admin"] },
@@ -21,6 +21,7 @@ const Home = () => {
     { label: "Timetable Builder", path: "/home/timetable-builder", allowedRoles: ["admin", "teacher"] },
     { label: "Timetable View", path: "/home/timetable-view", allowedRoles: ["admin", "teacher"] },
     { label: "Change Password", path: "/home/change-password", allowedRoles: ["admin", "teacher"] },
+    { label: "Your Time Table", path: "/home/user-timetable", allowedRoles: ["teacher"] },
   ];
 
   const handleLogout = () => {
