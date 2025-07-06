@@ -13,6 +13,7 @@ const fetchTS = require("./routes/TTBuilder")
 const timetableRoutes = require('./routes/timetable');
 const changePass = require('./routes/ChangePass');
 const forgotPass = require("./routes/ForgotPass")
+const subjectRequirementsRoute = require('./routes/subjectRequirements');
 // const generate = require("./routes/autoGenerateLive")
 
 const authRoutes = require("./routes/authRoutes");
@@ -27,6 +28,9 @@ mongoose.connect("mongodb://localhost:27017/TTG")
   .catch((err) => console.error("MongoDB error:", err));
 
 // Use routes
+
+app.use('/api/subject-requirements', subjectRequirementsRoute);
+
 app.use("/api", authRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/teachers", teacherRoutes);

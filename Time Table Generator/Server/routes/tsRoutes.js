@@ -6,7 +6,7 @@ router.post('/add', async (req, res) => {
     try {
         const { branch, slotlen, breakLen, slotsBeforeBreak, startTime } = req.body;
         // ✅ Basic validation
-        const existingTS = await TS.findOne({ branch });
+        const existingTS = await TS.findOne({ branch: branch.toLowerCase() });
         if (existingTS) {
             return res.status(400).json({ message: "Time Slot for this branch already exists" });
         }

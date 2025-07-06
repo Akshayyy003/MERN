@@ -4,6 +4,10 @@ import './css/TimetableBuilder.css';
 import axios from 'axios';
 
 const TimetableBuilder = () => {
+  const [subjectRequirements, setSubjectRequirements] = useState({});
+  const [visible, setVisible] = useState(true);
+  const [subjectCounts, setSubjectCounts] = useState({});
+
   const [div, setDiv] = useState("");
   const [branch, setBranch] = useState("");
   const [config, setConfig] = useState(null);
@@ -17,6 +21,33 @@ const TimetableBuilder = () => {
   const [labSelections, setLabSelections] = useState({});
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
+  useEffect(() => {
+    const fetchSubjectRequirements = async () => {
+      if (!branch || !semester) return;
+      try {
+        const res = await axios.get(`http://localhost:5000/api/subject-requirements/${branch}/${semester}`);
+        const requirements = res.data.requirements;
+        setSubjectRequirements(requirements);
+
+        // Clone counts for tracking
+        const countsCopy = {};
+        for (let key in requirements) {
+          countsCopy[key] = {
+            lec: requirements[key].lec,
+            lab: requirements[key].lab
+          };
+        }
+        setSubjectCounts(countsCopy);
+      } catch (err) {
+        console.error("Failed to fetch subject requirements", err);
+      }
+    };
+
+    fetchSubjectRequirements();
+  }, [branch, semester]);
+
 
   useEffect(() => {
     const fetchOptions = async () => {
@@ -99,19 +130,52 @@ const TimetableBuilder = () => {
   };
 
   const handleSlotDataChange = (day, index, data) => {
-    setTimetableData((prev) => ({
-      ...prev,
-      [`${day}-${index}`]: data
-    }));
+    const key = `${day}-${index}`;
+
+    const prevData = timetableData[key];
+    const updated = { ...timetableData, [key]: data };
+    setTimetableData(updated);
+
+    const adjustCounts = (subject, type, delta) => {
+      if (!subject || !type || !subjectCounts[subject]) return;
+      setSubjectCounts(prev => ({
+        ...prev,
+        [subject]: {
+          ...prev[subject],
+          [type]: Math.max(0, prev[subject][type] + delta)
+        }
+      }));
+    };
+
+    // Revert previous selection
+    if (prevData?.type === "Lecture") {
+      adjustCounts(prevData.lectureData.subject, "lec", 1);
+    } else if (prevData?.type === "Lab") {
+      for (const div in prevData.labData) {
+        const subj = prevData.labData[div].subject;
+        adjustCounts(subj, "lab", 1);
+      }
+    }
+
+    // Apply new selection
+    if (data?.type === "Lecture") {
+      adjustCounts(data.lectureData.subject, "lec", -1);
+    } else if (data?.type === "Lab") {
+      for (const div in data.labData) {
+        const subj = data.labData[div].subject;
+        adjustCounts(subj, "lab", -1);
+      }
+    }
   };
-  const reset = () =>{
+
+  const reset = () => {
     setDiv("");
-      setBranch("");
-      setSemester("");
-      setConfig(null);
-      setOptions({ teachers: [], subjects: [], locations: [] });
-      setTimetableData({});
-      setLabSelections({});
+    setBranch("");
+    setSemester("");
+    setConfig(null);
+    setOptions({ teachers: [], subjects: [], locations: [] });
+    setTimetableData({});
+    setLabSelections({});
   }
   const handleSubmit = async () => {
     const timetableArray = [];
@@ -184,7 +248,7 @@ const TimetableBuilder = () => {
   };
 
   return (
-    <div className="timetable-wrapper">
+    <div className="timetable-wrapper" style={{ paddingBottom: "200px" }}>
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', paddingLeft: '1rem' }}>
         <label className="dropdown-label">
           <span className="label-text">Branch</span>
@@ -291,9 +355,51 @@ const TimetableBuilder = () => {
 
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <button className="submit-button" onClick={handleSubmit}>Submit Timetable</button>
-        
-        <button className="submit-button" style={{ marginLeft: "20px" }}  onClick={reset}>Reset Timetable</button>
+
+        <button className="submit-button" style={{ marginLeft: "20px" }} onClick={reset}>Reset Timetable</button>
       </div>
+      <button
+        onClick={() => setVisible(!visible)}
+        style={{
+          position: "fixed",
+          bottom: visible ? "120px" : "20px",
+          right: "20px",
+          zIndex: 1001,
+          padding: "0.5rem 1rem",
+          borderRadius: "8px",
+          border: "none",
+          background: "#444",
+          color: "#fff",
+          cursor: "pointer"
+        }}
+      >
+        {visible ? "Hide Summary" : "Show Summary"}
+      </button>
+
+      {visible && (
+        <div className="requirements-footer">
+          <h4>Subject Requirements</h4>
+          <table className="footer-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Lectures Left</th>
+                <th>Labs Left</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(subjectRequirements).map(([subject, data], idx) => (
+                <tr key={idx}>
+                  <td>{subject}</td>
+                  <td>{data.lec}</td>
+                  <td>{data.lab}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
     </div>
   );
 };
