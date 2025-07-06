@@ -15,6 +15,7 @@ const changePass = require('./routes/ChangePass');
 const forgotPass = require("./routes/ForgotPass")
 const subjectRequirementsRoute = require('./routes/subjectRequirements');
 // const generate = require("./routes/autoGenerateLive")
+require("dotenv").config(); 
 
 const authRoutes = require("./routes/authRoutes");
 
@@ -23,11 +24,15 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/TTG")
+// mongoose.connect("mongodb://localhost:27017/TTG")
+//   .then(() => console.log("MongoDB Connected"))
+//   .catch((err) => console.error("MongoDB error:", err));
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB error:", err));
 
-// Use routes
+
 
 app.use('/api/subject-requirements', subjectRequirementsRoute);
 
