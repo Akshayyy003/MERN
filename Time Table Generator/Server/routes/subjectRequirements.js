@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Subject = require('../models/subjects');
 
-// GET /api/subject-requirements/:branch/:semester
 router.get('/:branch/:semester', async (req, res) => {
   const { branch, semester } = req.params;
 
@@ -16,7 +15,6 @@ router.get('/:branch/:semester', async (req, res) => {
         lab: s.lab
       };
     });
-    console.log(subjects);
 
     res.json({ requirements });
   } catch (err) {
