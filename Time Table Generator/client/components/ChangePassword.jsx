@@ -3,7 +3,7 @@ import axios from "axios";
 import "./css/Login.css"; // Using your existing Login.css
 
 const ChangePassword = () => {
-  const [email, setEmail] = useState(localStorage.getItem("email") || "");
+  const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
   console.log("Email ",email)
 
   const [oldPassword, setOldPassword] = useState("");

@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
 
   if (isLoggedIn) {
     return <Navigate to="/home" replace />;
@@ -29,9 +29,9 @@ const LoginForm = () => {
       alert("Successfully logged in");
 
       // Optional: Save user data to localStorage
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("user", JSON.stringify(result.data.user));
-      localStorage.setItem("email", result.data.user.email); 
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("user", JSON.stringify(result.data.user));
+      sessionStorage.setItem("email", result.data.user.email); 
 
 
       navigate('/home');

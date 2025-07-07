@@ -6,7 +6,7 @@ const UserTimetable = () => {
   const [timetable, setTimetable] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("email") || "");
+  const [userEmail, setUserEmail] = useState(sessionStorage.getItem("email") || "");
   const [timeSlots, setTimeSlots] = useState([]);
 
   useEffect(() => {
